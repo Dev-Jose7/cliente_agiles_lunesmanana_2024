@@ -1,27 +1,57 @@
 import { gastos } from "./simuladorBD.js";
 
-console.log(gastos)
 
-//Yo como cliente quisiera poder ver los gastos mayores a 10000
+//filtros aqui
 
-//Funciones para filtrar datos en los arreglos
-let filtroMonto = gastos.filter(gasto => gasto.monto > 10000);
-console.log(filtroMonto);
 
-//Ver gastos menores a 5000 pesos
-let filtro5000 = gastos.filter(gasto => gasto.monto > 5000);
-console.log(filtro5000);
+//DOM
+let fila=document.getElementById("fila")
 
-//Ver los gastos de transporte
-let filtroTransporte = gastos.filter(transaccion => transaccion.categoria == "transporte");
-console.log(filtroTransporte);
+//TRAVERSING
+//1. Debemos recorrer un arreglo de datos
+gastos.forEach(function(gasto){
+    
 
-//Ver los gastos de alimentacion
-let filtroAlimentacion = gastos.filter(transaccion => transaccion.categoria == "comida");
-console.log(filtroAlimentacion);
+    //2. Creamos etiquetas necesarias para mostrar la info
 
-//Ver los gastos de entretenimiento
-let filtroEntrenimiento = gastos.filter(transaccion => transaccion.categoria == "entretenimiento");
-console.log(filtroEntrenimiento);
+    let columna=document.createElement("div")
+    columna.classList.add("col")
 
-let fila = document.getElementById("fila");
+    let tarjeta=document.createElement("div")
+    tarjeta.classList.add("card","h-100","shadow","p-5")
+
+    let descripcion=document.createElement("h3")
+    descripcion.classList.add("text-center", "fw-bold")
+    //propiedad para modificar el texto de una etiqueta desde JS
+    descripcion.textContent=gasto.descripcion
+
+
+    let montoGasto=document.createElement("h2")
+    montoGasto.classList.add("text-center","text-success")
+    montoGasto.textContent="$ "+gasto.monto
+
+
+    let imagen = document.createElement("img");
+    imagen.classList.add("img-fluid");
+    if(gasto.categoria == "transporte"){
+        imagen.src = "../../assets/img/analitica.png" 
+    }else if(gasto.categoria == "comida"){
+        imagen.src = "../../assets/img/dinero.png"
+    }else if(gasto.categoria == "entretenimiento"){
+        imagen.src = "../../assets/img/investigacion.png"
+    }
+    
+    
+    
+
+
+    //3. Creando las jerarquias del modelo traversing
+    //se arranca de lo mas interno hacia lo mas externo
+    tarjeta.appendChild(descripcion)
+    tarjeta.appendChild(montoGasto)
+    tarjeta.appendChild(imagen)
+    columna.appendChild(tarjeta)
+    fila.appendChild(columna)
+
+
+})

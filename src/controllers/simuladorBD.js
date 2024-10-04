@@ -67,6 +67,9 @@ export let gastos=Array(
         descripcion:"media de guaro+cover 2x1",
         monto:18000,
         fecha:"2024-9-21",
-        categoria:"Entretenimiento"
+        categoria:"entretenimiento"
     }
+    
+    
+    
 )
