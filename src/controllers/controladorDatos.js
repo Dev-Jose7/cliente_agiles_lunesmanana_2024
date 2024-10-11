@@ -1,6 +1,4 @@
-import { gastos } from "./simuladorBD.js";
-
-
+let gastos = JSON.parse(sessionStorage.getItem("datos"));
 //filtros aqui
 
 
@@ -30,21 +28,19 @@ gastos.forEach(function(gasto){
     montoGasto.classList.add("text-center","text-success")
     montoGasto.textContent="$ "+gasto.monto
 
-
-    let imagen = document.createElement("img");
-    imagen.classList.add("img-fluid");
-    if(gasto.categoria == "transporte"){
-        imagen.src = "../../assets/img/analitica.png" 
-    }else if(gasto.categoria == "comida"){
-        imagen.src = "../../assets/img/dinero.png"
-    }else if(gasto.categoria == "entretenimiento"){
-        imagen.src = "../../assets/img/investigacion.png"
+    
+    let imagen=document.createElement("img")
+    imagen.classList.add("img-fluid")
+    
+    if(gasto.categoria=="transporte"){
+        imagen.src="../../assets/img/transporte.png"
+    }else if(gasto.categoria=="comida"){
+        imagen.src="../../assets/img/food-restaurant.png"
+    }else if(gasto.categoria=="entretenimiento"){
+        imagen.src="../../assets/img/mascaradas.png"
     }
     
     
-    
-
-
     //3. Creando las jerarquias del modelo traversing
     //se arranca de lo mas interno hacia lo mas externo
     tarjeta.appendChild(descripcion)
